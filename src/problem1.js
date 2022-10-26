@@ -25,11 +25,21 @@ function checkNextPage(pobiPages, crongPages) {
   return false;
 }
 
+function checkLeftPageOdd(pobiPages, crongPages) {
+  if (
+    pobiPages[0] % 2 === 1 && 
+    crongPages[0] % 2 === 1
+  ) return true;
+
+  return false
+}
+
 function isExceptions(pobiPages, crongPages) {
   if (
     !isInPage(pobiPages, crongPages) ||
     !isLengthTwo(pobiPages, crongPages) ||
-    !checkNextPage(pobiPages, crongPages)
+    !checkNextPage(pobiPages, crongPages) ||
+    !checkLeftPageOdd(pobiPages, crongPages)
   ) return true;
   
   return false;
