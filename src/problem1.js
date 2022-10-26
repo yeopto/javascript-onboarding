@@ -28,6 +28,16 @@ function checkNextPage(pobiPages, crongPages) {
   return false;
 }
 
+function isExceptions(pobiPages, crongPages) {
+  if (
+    !isInPage(pobiPages, crongPages) ||
+    !isLengthTwo(pobiPages, crongPages) ||
+    !checkNextPage(pobiPages, crongPages)
+  ) return true;
+  
+  return false
+}
+
 function getBiggerNum(page) {
   const add = String(page).split('').reduce((acc, cur) => +acc + +cur, 0);
   const multiply = String(page).split('').reduce((acc, cur) => +acc * +cur, 1);
@@ -44,11 +54,7 @@ function getScore(pobiPages, crongPages) {
 }
 
 function problem1(pobi, crong) {
-  if (
-    !isInPage(pobi, crong) ||
-    !isLengthTwo(pobi, crong) ||
-    !checkNextPage(pobi, crong)
-  ) return -1;
+  if (isExceptions(pobi, crong)) return -1;
 
   const [pobiScore, crongScore] = getScore(pobi, crong);
 
