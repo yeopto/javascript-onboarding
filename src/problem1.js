@@ -2,9 +2,8 @@ function isInPage(pobiPages, crongPages) {
   if (
     pobiPages.every((page) => page >= 1 && page <= 400) && 
     crongPages.every((page) => page >= 1 && page <= 400)
-  ) {
-    return true;
-  }
+  ) return true;
+  
   return false;
 }
 
@@ -12,9 +11,8 @@ function isLengthTwo(pobiPages, crongPages) {
   if (
     pobiPages.length === 2 && 
     crongPages.length === 2
-  ) {
-    return true;
-  }
+  ) return true;
+  
   return false;
 }
 
@@ -22,9 +20,8 @@ function checkNextPage(pobiPages, crongPages) {
   if (
     pobiPages[1] - pobiPages[0] === 1 &&
     crongPages[1] - crongPages[0] === 1
-  ) {
-    return true;
-  }
+  ) return true;
+
   return false;
 }
 
@@ -35,7 +32,7 @@ function isExceptions(pobiPages, crongPages) {
     !checkNextPage(pobiPages, crongPages)
   ) return true;
   
-  return false
+  return false;
 }
 
 function getBiggerNum(page) {
@@ -47,7 +44,7 @@ function getBiggerNum(page) {
 }
 
 function getScore(pobiPages, crongPages) {
-  const pobiScore = Math.max(...pobiPages.map((pobiPage) => getBiggerNum(pobiPage)))
+  const pobiScore = Math.max(...pobiPages.map((pobiPage) => getBiggerNum(pobiPage)));
   const crongScore = Math.max(...crongPages.map((crongPage) => getBiggerNum(crongPage)));
 
   return [pobiScore, crongScore];
