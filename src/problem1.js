@@ -36,6 +36,13 @@ function getBiggerNum(page) {
   return biggerNum;
 }
 
+function getScore(pobiPages, crongPages) {
+  const pobiScore = Math.max(...pobiPages.map((pobiPage) => getBiggerNum(pobiPage)))
+  const crongScore = Math.max(...crongPages.map((crongPage) => getBiggerNum(crongPage)));
+
+  return [pobiScore, crongScore];
+}
+
 function problem1(pobi, crong) {
   if (
     !isInPage(pobi, crong) ||
@@ -43,8 +50,7 @@ function problem1(pobi, crong) {
     !checkNextPage(pobi, crong)
   ) return -1;
 
-  const pobiScore = Math.max(...pobi.map((pobiPage) => getBiggerNum(pobiPage)))
-  const crongScore = Math.max(...crong.map((crongPage) => getBiggerNum(crongPage)));
+  const [pobiScore, crongScore] = getScore(pobi, crong);
 
   if (pobiScore === crongScore) return 0;
   else if (pobiScore > crongScore) return 1;
