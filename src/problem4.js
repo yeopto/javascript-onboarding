@@ -1,4 +1,4 @@
-function checkLowCaseOrUpperCase(ascii) {
+function inverseTransform(ascii) {
   if (ascii >= 65 && ascii <= 90) 
     return String.fromCharCode(65 + 90 - ascii);
   else if (ascii >= 97 && ascii <= 122) 
@@ -10,7 +10,7 @@ function checkLowCaseOrUpperCase(ascii) {
 function problem4(word) {
   return word
     .split("")
-    .map(splitWord => checkLowCaseOrUpperCase(splitWord.charCodeAt()))
+    .map(splitWord => inverseTransform(splitWord.charCodeAt()))
     .join('');
 }
 
