@@ -1,5 +1,5 @@
 function problem6(forms) {
-  const result = new Set();
+  const result = [];
   const checkOverlapObj = {};
 
   forms.map((form) => {
@@ -10,8 +10,16 @@ function problem6(forms) {
       else checkOverlapObj[tempWord] = 1;
     }
   });
+
+  forms.map((form) => {
+    const [email, crewName] = form;
+    for (let i = 0; i < crewName.length - 1; i++) {
+      const tempWord = crewName.substring(i, i + 2);
+      if (checkOverlapObj[tempWord] > 1) result.push(email);
+    }
+  });
   
-  return result;
+  return result.sort();
 }
 
 module.exports = problem6;
