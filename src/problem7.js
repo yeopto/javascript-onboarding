@@ -16,12 +16,14 @@ function problem7(user, friends, visitors) {
 
   for (const recommandedFriend of recommandedFriends) {
     const [A, B] = recommandedFriend;
-    if (A in recommendScoreObj) recommandedFriend[A] += 10;
-    else if (B in recommendScoreObj) recommandedFriend[B] += 10;
-    else {
-      if (userFriends.includes(A)) recommendScoreObj[B] = 0;
-      else recommendScoreObj[A] = 0;
-    }
+    if (userFriends.includes(A)) recommendScoreObj[B] = 0;
+    else recommendScoreObj[A] = 0;
+  }
+
+  for (const recommandedFriend of recommandedFriends) {
+    const [A, B] = recommandedFriend;
+    if (userFriends.includes(A)) recommendScoreObj[B] += 10;
+    else recommendScoreObj[A] += 10;
   }
 
   for (const visitor of visitors) {
@@ -36,9 +38,11 @@ function problem7(user, friends, visitors) {
 
   return result
     .sort((a, b) => {
-      if (b[1] > a[1]) return 1;
-      if (a[1] < b[1]) return -1;
-      if (a[1] === b[1]) return a[0] < b[0] ? -1 : 1;
+      if (a[1] === b[1]) {
+        return a[0].localeCompare(b[0]);
+      } else {
+        return b[1] - a[1];
+      }
     })
     .map((el) => el[0])
     .slice(0, 5);
