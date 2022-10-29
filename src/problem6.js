@@ -19,7 +19,11 @@ function problem6(forms) {
     }
   });
   
-  return result.sort();
+  return result
+    .filter((el, index) => {
+      return result.indexOf(el) === index;
+    })
+    .sort();
 }
 
 module.exports = problem6;
