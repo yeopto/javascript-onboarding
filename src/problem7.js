@@ -38,10 +38,11 @@ function problem7(user, friends, visitors) {
 
   return result
     .sort((a, b) => {
+      if (a[1] > b[1]) return -1;
+      if (a[1] < b[1]) return 1;
       if (a[1] === b[1]) {
-        return a[0].localeCompare(b[0]);
-      } else {
-        return b[1] - a[1];
+        if (a[0] > b[0]) return 1;
+        if (a[0] < b[0]) return -1;
       }
     })
     .map((el) => el[0])
