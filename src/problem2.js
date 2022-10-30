@@ -14,7 +14,7 @@ function problem2(cryptogram) {
     })
     .join("");
 
-  if (decoding === cryptogram) return decoding 
+  if (decoding === cryptogram) return decoding;
   return problem2(decoding);
 }
 
