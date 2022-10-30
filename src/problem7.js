@@ -14,26 +14,30 @@ function problem7(user, friends, visitors) {
     ) return el;
   });
 
-  for (const recommandedFriend of recommandedFriends) {
+  recommandedFriends.map((recommandedFriend) => {
     const [A, B] = recommandedFriend;
     if (userFriends.includes(A)) recommendScoreObj[B] = 0;
     else recommendScoreObj[A] = 0;
-  }
+    return;
+  })
 
-  for (const recommandedFriend of recommandedFriends) {
+  recommandedFriends.map((recommandedFriend) => {
     const [A, B] = recommandedFriend;
     if (userFriends.includes(A)) recommendScoreObj[B] += 10;
     else recommendScoreObj[A] += 10;
-  }
-
-  for (const visitor of visitors) {
+    return;
+  })
+  
+  visitors.map((visitor) => {
     if (visitor in recommendScoreObj) recommendScoreObj[visitor] += 1;
     else recommendScoreObj[visitor] = 1;
-  }
+    return;
+  })
 
   const result = [];
   for (const name in recommendScoreObj) {
-    if (!userFriends.includes(name)) result.push([name, recommendScoreObj[name]]);
+    if (!userFriends.includes(name))
+      result.push([name, recommendScoreObj[name]]);
   }
 
   return result
