@@ -1,9 +1,9 @@
 function isInPage(pobiPages, crongPages) {
   if (
-    pobiPages.every((page) => page >= 1 && page <= 400) && 
+    pobiPages.every((page) => page >= 1 && page <= 400) &&
     crongPages.every((page) => page >= 1 && page <= 400)
   ) return true;
-  
+
   return false;
 }
 
@@ -12,13 +12,13 @@ function isLengthTwo(pobiPages, crongPages) {
     pobiPages.length === 2 && 
     crongPages.length === 2
   ) return true;
-  
+
   return false;
 }
 
 function checkNextPage(pobiPages, crongPages) {
   if (
-    pobiPages[1] - pobiPages[0] === 1 &&
+    pobiPages[1] - pobiPages[0] === 1 && 
     crongPages[1] - crongPages[0] === 1
   ) return true;
 
@@ -31,7 +31,7 @@ function checkLeftPageOdd(pobiPages, crongPages) {
     crongPages[0] % 2 === 1
   ) return true;
 
-  return false
+  return false;
 }
 
 function isExceptions(pobiPages, crongPages) {
@@ -41,21 +41,29 @@ function isExceptions(pobiPages, crongPages) {
     !checkNextPage(pobiPages, crongPages) ||
     !checkLeftPageOdd(pobiPages, crongPages)
   ) return true;
-  
+
   return false;
 }
 
 function getBiggerNum(page) {
-  const add = String(page).split('').reduce((acc, cur) => +acc + +cur, 0);
-  const multiply = String(page).split('').reduce((acc, cur) => +acc * +cur, 1);
+  const add = String(page)
+    .split("")
+    .reduce((acc, cur) => +acc + +cur, 0);
+  const multiply = String(page)
+    .split("")
+    .reduce((acc, cur) => +acc * +cur, 1);
   const biggerNum = Math.max(add, multiply);
 
   return biggerNum;
 }
 
 function getScore(pobiPages, crongPages) {
-  const pobiScore = Math.max(...pobiPages.map((pobiPage) => getBiggerNum(pobiPage)));
-  const crongScore = Math.max(...crongPages.map((crongPage) => getBiggerNum(crongPage)));
+  const pobiScore = Math.max(
+    ...pobiPages.map((pobiPage) => getBiggerNum(pobiPage))
+  );
+  const crongScore = Math.max(
+    ...crongPages.map((crongPage) => getBiggerNum(crongPage))
+  );
 
   return [pobiScore, crongScore];
 }
