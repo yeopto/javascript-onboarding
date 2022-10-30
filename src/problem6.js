@@ -4,21 +4,29 @@ function problem6(forms) {
 
   forms.map((form) => {
     const [_, crewName] = form;
-    for (let i = 0; i < crewName.length - 1; i++) {
-      const tempWord = crewName.substring(i, i + 2);
-      if (tempWord in checkOverlapObj) checkOverlapObj[tempWord]++;
-      else checkOverlapObj[tempWord] = 1;
-    }
+    crewName
+      .split("")
+      .map((_, index) => {
+        if (crewName.length - 1 === index) return;
+        const tempWord = crewName.substring(index, index + 2);
+        if (tempWord in checkOverlapObj) checkOverlapObj[tempWord]++;
+        else checkOverlapObj[tempWord] = 1;
+        return;
+      });
   });
 
   forms.map((form) => {
     const [email, crewName] = form;
-    for (let i = 0; i < crewName.length - 1; i++) {
-      const tempWord = crewName.substring(i, i + 2);
-      if (checkOverlapObj[tempWord] > 1) result.push(email);
-    }
+    crewName
+      .split("")
+      .map((_, index) => {
+        if (crewName.length - 1 === index) return;
+        const tempWord = crewName.substring(index, index + 2);
+        if (checkOverlapObj[tempWord] > 1) result.push(email);
+        return;
+      });
   });
-  
+
   return result
     .filter((el, index) => {
       return result.indexOf(el) === index;
