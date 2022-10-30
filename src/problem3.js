@@ -1,18 +1,21 @@
-function threeSixNineCount(num) {
+function clapCount(num) {
   let count = 0;
-  for (let i = 0; i < String(num).length; i++) {
-    if (
-      String(num)[i] === '3' ||
-      String(num)[i] === '6' ||
-      String(num)[i] === '9'
-    ) count++;  
-  }
+
+  String(num)
+    .split("")
+    .map((el) => {
+      if (el === "3" || el === "6" || el === "9") {
+        count++;
+        return;
+      }
+    });
+
   return count;
 }
 
 function problem3(number) {
   const numberArr = Array.from(new Array(number), (_, k) => k + 1);
-  const clapCountArr = numberArr.map((num) => threeSixNineCount(num));
+  const clapCountArr = numberArr.map((num) => clapCount(num));
 
   return clapCountArr.reduce((acc, cur) => acc + cur, 0);
 }
